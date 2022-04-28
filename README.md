@@ -29,14 +29,10 @@ Here are some examples:
     s = new()
     s.push(1)
     s.begin()
-
     assert s.pop() == 1
-
     s.push(2)
     s.begin()
-
     s.push(3)
-
     assert s.pop() == 3
     assert s.pop() == 2
 
@@ -45,15 +41,12 @@ Example two:
     s = new()
     s.push(1)
     s.begin()
-
     s.push(2)
     s.begin()
-
     s.push(3)
     s.rollback()
     assert s.pop() == 2
     assert s.pop() == 1
-
     s.rollback()
     assert s.pop() == 1
 
@@ -62,15 +55,11 @@ Example three:
     s = new()
     s.push(1)
     s.begin()
-
     s.push(2)
     s.begin()
-
     s.push(3)
-
     s.commit()
     assert s.pop() == 3
-
     s.rollback()
     assert s.pop() == 1
 
