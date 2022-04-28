@@ -14,13 +14,33 @@ If you prefer safe & immutable APIs, you might prefer this one:
     def pop() -> Option<Pair<Stack, int>>
 
 The TStack or Transactional Stack is a Stack data structure with three new operations: `begin`,
-`commit`, and `rollback`. The `begin` operation conceptually stores the state of the stack so that
-it can be returned to at a later time. The `rollback` operation returns to the state of the most
-recent `begin`.
+`commit`, and `rollback`. The `begin` operation starts a "transaction". All subsequent `push` and
+`pop` operations continue to work as described above. However, the user may now call the `rollback`
+operation which changes the stack so that it appears as if the operations in the transaction never
+happened.
 
-The `begin` and `rollback` operations themselves form a stack-like structure. After calling
-`rollback`, the most recent `begin` becomes inaccessible. Calling `rollback` again would restore the
-stack to the state at next most recent `begin`. For example:
+The user may also call the `commit` operation which ends the current transaction. Calling `rollback`
+when there is no active transaction is an error.
+
+Transactions may be nested. This occurs if `begin` is called while a transaction is still active.
+
+Here are some examples:
+
+    s = new()
+    s.push(1)
+    s.begin()
+
+    assert s.pop() == 1
+
+    s.push(2)
+    s.begin()
+
+    s.push(3)
+
+    assert s.pop() == 3
+    assert s.pop() == 2
+
+Example two:
 
     s = new()
     s.push(1)
@@ -37,7 +57,7 @@ stack to the state at next most recent `begin`. For example:
     s.rollback()
     assert s.pop() == 1
 
-The `commit` operation allows us to skip over a `begin` without restoring its state. For example:
+Example three:
 
     s = new()
     s.push(1)
