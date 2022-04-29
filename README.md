@@ -69,5 +69,5 @@ we meet, we will discuss the correctness, asymptotic computational complexity, a
 complexity, and the practical performance on a modern computer.
 
 This problem is hard. We do not expect every candidate to implement a completely correct and maximally efficient
-stack on the first try. Instead, we endeavor to probe your ability to reason about a modern computer and the programs
+stack. Instead, we endeavor to probe your ability to reason about a modern computer and the programs
 executing upon it.
