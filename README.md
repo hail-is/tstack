@@ -68,6 +68,6 @@ least `push`, `pop`, `commit`, `rollback`, and `begin`. Your API may be mutable 
 we meet, we will discuss the correctness, asymptotic computational complexity, asymptotic memory
 complexity, and the practical performance on a modern computer.
 
-We do not expect every candidate to implement a completely correct and maximally efficient
+This problem is hard. We do not expect every candidate to implement a completely correct and maximally efficient
 stack. Instead, we endeavor to probe your ability to reason about a modern computer and the programs
 executing upon it.
